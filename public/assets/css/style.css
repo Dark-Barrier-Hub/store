@@ -1,0 +1,45 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background: url('../images/dbh_bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+.category {
+    padding: 60px 0;
+}
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+.card img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.navbar {
+    background: rgba(0, 0, 0, 0.9) !important;
+}
+.footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+.btn-custom {
+    background: #007bff;
+    border: none;
+    color: white;
+    transition: 0.3s;
+}
+.btn-custom:hover {
+    background: #0056b3;
+}
