@@ -24,8 +24,11 @@ body {
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 .card img {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    width: 40%;
+    height: auto;
+    border-radius: 12px;
+    align-self: center;
+    margin-top: 10px;
 }
 .navbar {
     background: rgba(0, 0, 0, 0.9) !important;
@@ -42,4 +45,9 @@ body {
 }
 .btn-custom:hover {
     background: #0056b3;
+}
+
+.btn-custom:focus {
+    background: #0056b3;
+    border: 2px solid #E8E8E8;
 }
