@@ -1,9 +1,19 @@
-body {
-  height: 100vh;
+#main {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: calc(100vh - 100px); /* Adjust to ensure it doesn't overlap with navbar/footer */
 }
+
+.card {
+  background: rgba(255, 254, 254, 0);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(48, 48, 48, 0.2);
+  width: 350px;
+  padding: 20px;
+}
+
 .hidden {
   display: none;
 }
