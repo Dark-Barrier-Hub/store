@@ -1,6 +1,6 @@
 // Import Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Handle sending login link
-document.getElementById("send-link").addEventListener("click", function(event) {
+document.getElementById("send-link").addEventListener("click", function (event) {
     event.preventDefault();
 
     const email = document.getElementById("user-email").value.trim();
@@ -35,7 +35,7 @@ document.getElementById("send-link").addEventListener("click", function(event) {
     sendSignInLinkToEmail(auth, email, actionCodeSettings)
         .then(() => {
             alert("A login link has been sent to your email. Please check your inbox.");
-            localStorage.setItem("emailForSignIn", email); // Store email to complete sign-in
+            localStorage.setItem("emailForSignIn", email); // Store email temporarily
         })
         .catch((error) => {
             alert(error.message);
@@ -51,10 +51,22 @@ if (isSignInWithEmailLink(auth, window.location.href)) {
 
     signInWithEmailLink(auth, email, window.location.href)
         .then((result) => {
+            // Clear stored email after successful sign-in
             localStorage.removeItem("emailForSignIn");
+
+            alert("Login successful! Redirecting...");
             window.location.href = "profile.html"; // Redirect after login
         })
         .catch((error) => {
             alert(error.message);
         });
 }
+
+// Check authentication state (Useful for persistent login)
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log("User is logged in:", user.uid);
+    } else {
+        console.log("No user logged in.");
+    }
+});

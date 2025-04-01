@@ -3,8 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dark Barrier Hub - Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/dbh_icon.png" type="image/x-icon">
+    <style>
+        
+        /* Profile Section */
+        .profile-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #222;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: white;
+        }
+        .profile-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .profile-container p {
+            font-size: 1.1rem;
+            color: #bbb;
+        }
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 15px auto;
+            border: 3px solid rgb(255, 255, 255);
+            display: none;
+        }
+        .logout-btn {
+            background: cyan;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Loading Animation */
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            margin-top: 50px;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+    </style>
 </head>
 <body>
-    <h1>IT WORKED</h1></body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Dark Barrier Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html" title="Home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="apps.html">Apps</a></li>
+                    <li class="nav-item"><a class="nav-link" href="games.html">Games</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logsign.html".html" title="Login/Signup"><i class="fa-solid fa-user-plus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading Text -->
+    <h1 class="loading-text">Loading...</h1>
+
+    <!-- Profile Section -->
+    <div class="profile-container">
+        <h1>Profile</h1>
+        <p id="email">Loading email...</p>
+        <img id="avatar" class="profile-avatar" src="" alt="Profile Picture">
+        <br>
+        <button id="logout" class="logout-btn">Logout</button>
+    </div>
+
+    <footer class="footer text-center p-3 mt-4">
+        &copy; 2025 Dark Barrier Hub. All rights reserved.
+    </footer>
+    <script type="module" src="assets/js/profile.js"></script>
+    <script type="module" src="assets/js/login_logout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
