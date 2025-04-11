@@ -27,7 +27,7 @@ onAuthStateChanged(auth, (user) => {
         fetchUserData(userUID);
     } else {
         alert("No user logged in! Redirecting to login page.");
-        window.location.href = "index.html"; // Redirect to login page
+        window.location.href = "index.html";
     }
 });
 
@@ -46,14 +46,16 @@ async function fetchUserData(uid) {
 
 // Function to Display User Data
 function displayUserData(userData) {
+    const user = auth.currentUser;
+    const email = user ? user.email : "Not Available";
+
     document.querySelector("h1").textContent = `Welcome, ${userData.name}!`;
-    document.getElementById("email").textContent = `Email: ${userData.email}`;
+    document.getElementById("email").textContent = `Email: ${email}`;
 
     const avatarImg = document.getElementById("avatar");
     avatarImg.src = userData.avatar_pic;
     avatarImg.style.display = "block";
 
-    // Attach Logout Event
     document.getElementById("logout").addEventListener("click", logoutUser);
 }
 
@@ -65,17 +67,10 @@ async function askForUserDetails(uid) {
         return;
     }
 
-    const email = prompt("Enter your email:");
-    if (!email) {
-        alert("You must enter an email!");
-        return;
-    }
-
-    // Handle Image Upload
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = "image/*";
-    
+
     fileInput.addEventListener("change", async function () {
         const file = fileInput.files[0];
 
@@ -83,10 +78,9 @@ async function askForUserDetails(uid) {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = async function () {
-                const avatar_pic = reader.result; // Base64 encoded image
+                const avatar_pic = reader.result;
 
-                // Save to Firestore
-                await saveUserData(uid, { name, email, avatar_pic });
+                await saveUserData(uid, { name, avatar_pic });
             };
         } else {
             alert("No image selected. Profile setup failed.");
@@ -94,10 +88,10 @@ async function askForUserDetails(uid) {
     });
 
     document.body.appendChild(fileInput);
-    fileInput.click(); // Automatically open file picker
+    fileInput.click();
 }
 
-// Function to Save User Data in Firestore
+// Function to Save User Data in Firestore (excluding email)
 async function saveUserData(uid, userData) {
     try {
         const userRef = doc(db, "users", uid);
@@ -113,8 +107,8 @@ async function saveUserData(uid, userData) {
 function logoutUser() {
     signOut(auth).then(() => {
         localStorage.removeItem("userUID");
-        localStorage.removeItem("userLoggedIn")
-        window.location.href = "index.html"; // Redirect to login
+        localStorage.removeItem("userLoggedIn");
+        window.location.href = "index.html";
     }).catch((error) => {
         alert("Error logging out: " + error.message);
     });
