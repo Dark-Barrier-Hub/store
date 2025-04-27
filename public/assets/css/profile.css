@@ -1,0 +1,56 @@
+
+/* Profile Section */
+.profile-container {
+    position: relative;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: white;
+}
+.profile-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+.profile-container p {
+    font-size: 1.1rem;
+    color: #bbb;
+}
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 15px auto;
+    border: 3px solid rgb(255, 255, 255);
+    display: none;
+}
+.logout-btn {
+    background: cyan;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.logout-btn:hover {
+    background: white;
+    color: black;
+}
+
+/* Loading Animation */
+.loading-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    animation: blink 1.5s infinite;
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}

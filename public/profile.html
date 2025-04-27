@@ -7,66 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="shortcut icon" href="assets/images/dbh_icon.png" type="image/x-icon">
-    <style>
-        
-        /* Profile Section */
-        .profile-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #222;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            color: white;
-        }
-        .profile-container h1 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        .profile-container p {
-            font-size: 1.1rem;
-            color: #bbb;
-        }
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 15px auto;
-            border: 3px solid rgb(255, 255, 255);
-            display: none;
-        }
-        .logout-btn {
-            background: cyan;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-        .logout-btn:hover {
-            background: white;
-            color: black;
-        }
-
-        /* Loading Animation */
-        .loading-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: rgb(255, 255, 255);
-            text-align: center;
-            margin-top: 50px;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -88,18 +30,41 @@
         </div>
     </nav>
 
-    <!-- Loading Text -->
-    <h1 class="loading-text">Loading...</h1>
-
     <!-- Profile Section -->
     <div class="profile-container">
+        <div class="dropdown text-end" style="position: absolute; top: 20px; right: 20px;">
+            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#" id="changeNameBtn">Change Name</a></li>
+                <li><a class="dropdown-item" href="#" id="changeImageBtn">Change Image</a></li>
+                <li><a href="#" class="dropdown-item" id="changeEmailBtn">Change Email</a></li>
+            </ul>
+        </div>
+        
         <h1>Profile</h1>
+        <h1 class="loading-text" style="display: none;">Loading...</h1>
         <p id="email">Loading email...</p>
         <img id="avatar" class="profile-avatar" src="" alt="Profile Picture">
         <br>
         <button id="logout" class="logout-btn">Logout</button>
     </div>
 
+    <!-- Profile Setup Form (Hidden by Default) -->
+    <div class="profile-container" id="profile-setup" style="display: none;">
+        <h1>Set Up Your Profile</h1>
+        <form id="setup-form">
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="nameInput" required>
+            </div>
+            <div class="mb-3">
+                <label for="avatarInput" class="form-label">Upload Profile Picture</label>
+                <input type="file" class="form-control" id="avatarInput" accept="image/*" required>
+            </div>
+            <button type="submit" class="logout-btn">Save Profile</button>
+        </form>
+    </div>
+    
     <footer class="footer text-center p-3 mt-4">
         &copy; 2025 Dark Barrier Hub. All rights reserved.
     </footer>
