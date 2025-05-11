@@ -1,0 +1,21 @@
+{
+  "title": "BatImgCnvt.exe",
+  "description": "A simple and effective tool for converting images to different formats. (jpg, png, bmp, tga, for now)",
+  "mainImage": "assets/images/products/pid1/main.ico",
+  "download32": "./assets/applications/BatImgCnvt_32-bit.exe",
+  "download64": "./assets/applications/BatImgCnvt_64-bit.exe",
+  "slideshow": [
+    "assets/images/products/pid1/ss1.png",
+    "assets/images/products/pid1/ss2.png",
+    "assets/images/products/pid1/ss3.png"
+  ],
+  "metadata": {
+    "Version": "1.0.0",
+    "Platform": "Windows",
+    "Release Date": "09-05-2025",
+    "Size": "541 KB",
+    "Category": "Productivity",
+    "License": "Freeware",
+    "Developer": "Dark Barrier Hub"
+  }
+}

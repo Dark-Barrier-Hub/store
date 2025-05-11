@@ -15,7 +15,7 @@ body {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     border-radius: 12px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.7);
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     color: white;
@@ -51,4 +51,11 @@ body {
 .btn-custom:focus {
     background: #0056b3;
     border: 2px solid #E8E8E8;
+}
+
+#app-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
