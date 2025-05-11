@@ -2,8 +2,8 @@
   "title": "BatImgCnvt.exe",
   "description": "A simple and effective tool for converting images to different formats. (jpg, png, bmp, tga, for now)",
   "mainImage": "assets/images/products/pid1/main.ico",
-  "download32": "./assets/applications/BatImgCnvt_32-bit.exe",
-  "download64": "./assets/applications/BatImgCnvt_64-bit.exe",
+  "download32": "./assets/applications/BatImgCnvt_32-bit.zip",
+  "download64": "./assets/applications/BatImgCnvt_64-bit.zip",
   "slideshow": [
     "assets/images/products/pid1/ss1.png",
     "assets/images/products/pid1/ss2.png",
