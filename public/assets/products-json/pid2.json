@@ -1,0 +1,21 @@
+{
+  "title": "XMRigAPI.html",
+  "description": "A tool for monitoring your XMRig Miners in a local network. (You have to enable http on xmrig config file.)",
+  "mainImage": "assets/images/products/pid2/main1.ico",
+  "download32": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/XMRigAPI.html",
+  "download64": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/XMRigAPI.html",
+  "slideshow": [
+    "https://dark-barrier-hub.web.app/assets/images/products/pid2/sss1.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid2/sss2.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid2/sss3.png"
+  ],
+  "metadata": {
+    "Version": "1.0.0",
+    "Platform": "Web",
+    "Release Date": "27-05-2025",
+    "Size": "25 KB",
+    "Category": "Productivity",
+    "License": "Freeware",
+    "Developer": "Dark Barrier Hub"
+  }
+}
