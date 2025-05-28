@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Barrier Hub - Shop</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/images/dbh_icon.png" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dark Barrier Hub - Tools</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="shortcut icon" href="assets/images/dbh_icon.png" type="image/x-icon" />
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
@@ -18,21 +19,57 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html" title="Home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="games.html">Games</a></li>
                     <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="logsign.html" title="Login/Signup"><i class="fa-solid fa-user-plus"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="logsign.html"><i
+                                class="fa-solid fa-user-plus"></i></a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <section class="category container mt-5" id="app-container">
+        <h2 class="text-center mb-4">Our Tools</h2>
+        <div class="row" id="apps-list"></div>
+    </section>
+
     <footer class="footer text-center p-3 mt-4">
         &copy; 2025 Dark Barrier Hub. All rights reserved.
     </footer>
-    <script type="module" src="assets/js/login_logout.js"></script>
+
+    <script>
+        fetch("assets/data/tools.json")
+            .then(res => res.json())
+            .then(data => {
+                const appList = document.getElementById("apps-list");
+                data.forEach(app => {
+                    const col = document.createElement("div");
+                    col.className = "col-md-4 mb-4";
+
+                    col.innerHTML = `
+                        <div class="card h-100 p-3 d-flex flex-column justify-content-between align-items-center text-center">
+                            <img src="${app.icon}" alt="${app.name} Icon" class="mb-3" style="width: 64px; height: 64px;" />
+                            <div>
+                            <h4>${app.name}</h4>
+                            <p>${app.description}</p>
+                            </div>
+                            <a href="${app.link}" class="btn btn-custom mt-3" target="_blank">Visit App</a>
+                        </div>
+                    `;
+
+                    appList.appendChild(col);
+                });
+            })
+            .catch(err => {
+                document.getElementById("apps-list").innerHTML = "<p class='text-danger'>Failed to load apps. Please try again later.</p>";
+                console.error(err);
+            });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

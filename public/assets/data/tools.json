@@ -1,0 +1,14 @@
+[
+  {
+    "name": "BatImgCnvt.exe",
+    "link": "product.html?data=assets/data/pid1.json",
+    "description": "A tool for converting images into various formats.",
+    "icon": "assets/images/products/pid1/main1.ico"
+  },
+  {
+    "name": "XMRigAPI.html",
+    "link": "product.html?data=assets/data/pid2.json",
+    "description": "A tool for monitoring your XMRig Miners in a local network.",
+    "icon": "assets/images/products/pid2/main1.ico"
+  }
+]
