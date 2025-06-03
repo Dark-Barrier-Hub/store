@@ -10,5 +10,17 @@
     "link": "product.html?data=assets/data/pid2.json",
     "description": "A tool for monitoring your XMRig Miners in a local network.",
     "icon": "assets/images/products/pid2/main1.ico"
+  },
+  {
+    "name": "BigFactCalc.exe",
+    "link": "product.html?data=assets/data/pid3.json",
+    "description": "A simple and effective tool for large factorial calculations.",
+    "icon": "assets/images/products/pid3/main1.ico"
+  },
+  {
+    "name": "SimpleEncryption_RSA.exe",
+    "link": "product.html?data=assets/data/pid4.json",
+    "description": "A simple and effective tool for generating RSA keys.",
+    "icon": "assets/images/products/pid4/main1.ico"
   }
 ]

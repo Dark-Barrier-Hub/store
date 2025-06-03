@@ -1,0 +1,21 @@
+{
+  "title": "BigFactCalc.exe",
+  "description": "A simple and effective tool for large factorial calculations. It can handle very large numbers and provides accurate results.",
+  "mainImage": "assets/images/products/pid3/main1.ico",
+  "download32": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/BigFactCalc.exe",
+  "download64": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/BigFactCalc.exe",
+  "slideshow": [
+    "https://dark-barrier-hub.web.app/assets/images/products/pid3/sss1.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid3/sss2.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid3/sss3.png"
+  ],
+  "metadata": {
+    "Version": "1.0.0",
+    "Platform": "Windows",
+    "Release Date": "24-05-2025",
+    "Size": "581 KB",
+    "Category": "Productivity",
+    "License": "Freeware",
+    "Developer": "Dark Barrier Hub"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "title": "SimpleEncryption_RSA.exe",
+  "description": "A simple and effective tool for generating RSA.",
+  "mainImage": "assets/images/products/pid4/main1.ico",
+  "download32": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/SimpleEncryption_RSA.exe",
+  "download64": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/SimpleEncryption_RSA.exe",
+  "slideshow": [
+    "https://dark-barrier-hub.web.app/assets/images/products/pid4/sss1.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid4/sss2.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid4/sss3.png"
+  ],
+  "metadata": {
+    "Version": "1.0.0",
+    "Platform": "Windows",
+    "Release Date": "03-06-2025",
+    "Size": "257 KB",
+    "Category": "Productivity",
+    "License": "Freeware",
+    "Developer": "Dark Barrier Hub"
+  }
+}
