@@ -1,0 +1,99 @@
+/* Product Page Enhancements */
+#main-image {
+    border: 4px solid #9b59b6;
+    box-shadow: 0 0 18px rgba(155, 89, 182, 0.4);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 5px;
+}
+
+#app-title {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 2rem;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px #000;
+    margin-bottom: 10px;
+}
+
+#app-description {
+    font-family: 'Cinzel', serif;
+    color: #e0d1f5;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+/* Download Buttons */
+#download-32,
+#download-64 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 16px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+#download-32 {
+    background: linear-gradient(to right, #6f42c1, #4b0082);
+    border: 1px solid #ffd700;
+    color: white;
+}
+
+#download-32:hover {
+    background: #ffd700;
+    color: #4b0082;
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
+}
+
+#download-64 {
+    background: linear-gradient(to right, #228B22, #006400);
+    border: 1px solid #ffd700;
+    color: white;
+}
+
+#download-64:hover {
+    background: #ffd700;
+    color: #004400;
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
+}
+
+/* Carousel */
+.carousel {
+    border: 2px solid #9b59b6;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(186, 85, 211, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px;
+}
+
+.carousel-item img {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+}
+
+/* App Details (Metadata) */
+#metadata-list {
+    background: rgba(54, 30, 70, 0.7);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e5d5fa;
+    font-family: 'Cinzel', serif;
+}
+
+.list-group-item strong {
+    color: #ffd700;
+    font-weight: bold;
+}

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 100px); /* Adjust to ensure it doesn't overlap with navbar/footer */
+  min-height: calc(100vh - 140px); /* Adjust to ensure it doesn't overlap with navbar/footer */
 }
 
 .card {
@@ -30,8 +30,4 @@
 }
 .form-control::placeholder {
   color: rgba(255, 255, 255, 0.7);
-}
-.btn-custom {
-  background: cyan;
-  font-weight: bold;
 }
