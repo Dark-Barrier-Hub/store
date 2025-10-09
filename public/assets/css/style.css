@@ -1,180 +1,243 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=MedievalSharp&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=MedievalSharp&display=swap");
 
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    font-family: 'Cinzel', serif;
-    background: url('../images/dbh_bg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #f5f0dc;
+:root {
+  --bg-dark: #121212;
+  --text-light: #FFFFFF;
+  --accent: #BB86FC;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: "Poppins", serif;
+  background: url("../images/dbh_bg.jpg") no-repeat center center fixed;
+  background-color: var(--bg-dark);
+  background-size: cover;
+  color: var(--text-light);
 }
 
 /* Headings with medieval flair */
-h2, .card-title {
-    font-family: 'MedievalSharp', cursive;
-    color: #ffd700;
-    text-shadow: 1px 1px 2px #000;
+h2,
+.card-title {
+  font-family: "MedievalSharp", cursive;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .category {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 /* Card redesign */
 .card {
-    background: rgba(54, 30, 70, 0.85); /* Deep royal purple */
-    color: #f5e6ff;
-    border: 2px solid #9b59b6; /* Soft purple border */
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    backdrop-filter: blur(6px);
-    height: 100%; /* Ensure it stretches inside its column */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Push button to the bottom */
+  background: rgba(54, 30, 70, 0.85); /* Deep royal purple */
+  color: #f5e6ff;
+  border: 2px solid #9b59b6; /* Soft purple border */
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(155, 89, 182, 0.4);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  backdrop-filter: blur(6px);
+  height: 100%; /* Ensure it stretches inside its column */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push button to the bottom */
 }
 
 .card:hover {
-    transform: scale(1.07);
-    box-shadow: 0 8px 22px rgba(186, 85, 211, 0.5); /* Hover glow */
+  transform: scale(1.07);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 22px rgba(186, 85, 211, 0.5); /* Hover glow */
 }
 
 .card img {
-    width: 40%;
-    height: auto;
-    border-radius: 12px;
-    align-self: center;
-    margin-top: 10px;
-    box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  width: 40%;
+  height: auto;
+  border-radius: 12px;
+  align-self: center;
+  margin-top: 10px;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
 .card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-title {
-    min-height: 48px; /* reserve space for titles (adjust if needed) */
+  min-height: 48px; /* reserve space for titles (adjust if needed) */
 }
 
 .card-text {
-    flex-grow: 1;
-    margin-bottom: 12px;
+  flex-grow: 1;
+  margin-bottom: 12px;
 }
 
+a:hover {
+  color: var(--accent);
+}
 
 /* Navigation bar with royal purple tones */
 .navbar {
-    background: rgba(75, 0, 130, 0.95) !important; /* Indigo */
-    font-family: 'Cinzel', serif;
-    border-bottom: 2px solid #9b59b6;
+  background: rgba(75, 0, 130, 0.95) !important; /* Indigo */
+  font-family: "Cinzel", serif;
+  border-bottom: 2px solid #9b59b6;
 }
 
 .navbar-brand {
-    color: #ffd700 !important;
-    font-weight: bold;
+  color: #ffd700 !important;
+  font-weight: bold;
 }
 
 .nav-link {
-    color: #e5d5fa !important;
-    transition: 0.3s;
+  color: #e5d5fa !important;
+  transition: 0.3s;
 }
 
 .nav-link:hover {
-    color: #ffd700 !important;
+  color: #ffd700 !important;
 }
+
+nav {
+  position: sticky;
+  top: 0;
+  background: #1f1f1f;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+nav a {
+  padding: 15px;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: var(--accent);
+}
+
 
 /* Royal magic buttons */
 .btn-custom {
-    background: linear-gradient(145deg, #6f42c1, #4b0082);
-    border: 1px solid #ffd700;
-    color: white;
-    font-weight: bold;
-    font-family: 'Cinzel', serif;
-    border-radius: 6px;
-    padding: 6px 12px;
-    box-shadow: 0 0 6px rgba(186, 85, 211, 0.3);
-    transition: 0.3s;
+  background: linear-gradient(145deg, #6f42c1, #4b0082);
+  border: 1px solid #ffd700;
+  color: white;
+  font-weight: bold;
+  font-family: "Cinzel", serif;
+  border-radius: 6px;
+  padding: 6px 12px;
+  box-shadow: 0 0 6px rgba(186, 85, 211, 0.3);
+  transition: 0.3s;
 }
 
 .btn-custom:hover {
-    background: #ffd700;
-    color: #4b0082;
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+  background: #ffd700;
+  color: #4b0082;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
 }
 
 .btn-custom:focus {
-    background: #ffc107;
-    border: 2px solid #f8e8ff;
+  background: #ffc107;
+  border: 2px solid #f8e8ff;
 }
+
+button {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: #a873ff;
+  box-shadow: 0 4px 10px rgba(187, 134, 252, 0.4);
+}
+
 
 /* Footer */
 .footer {
-    background: rgba(54, 30, 70, 0.9);
-    color: #f5e6ff;
-    border-top: 2px solid #9b59b6;
-    font-family: 'Cinzel', serif;
+  background: rgba(54, 30, 70, 0.9);
+  color: #f5e6ff;
+  border-top: 2px solid #9b59b6;
+  font-family: "Cinzel", serif;
 }
 
 /* Section background overlays */
 #app-container {
-    background: rgba(54, 30, 70, 0.8);
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+  background: rgba(54, 30, 70, 0.8);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
 }
 
 /* Header glow underline */
 h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 3px;
-    margin: 8px auto 0;
-    background: linear-gradient(to right, transparent, #ffd700, transparent);
-    border-radius: 2px;
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 8px auto 0;
+  background: linear-gradient(to right, transparent, #ffd700, transparent);
+  border-radius: 2px;
 }
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .card img {
-        width: 80%;
-    }
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
 
-    .navbar-brand, .nav-link {
-        font-size: 1.2rem;
-    }
+  .card img {
+    width: 80%;
+  }
 
-    h2, .card-title {
-        font-size: 1.5rem;
-    }
+  .navbar-brand,
+  .nav-link {
+    font-size: 1.2rem;
+  }
+
+  h2,
+  .card-title {
+    font-size: 1.5rem;
+  }
 }
 @media (max-width: 576px) {
-    .card {
-        margin: 10px;
-    }
+  .card {
+    margin: 10px;
+  }
 
-    .btn-custom {
-        width: 100%;
-        padding: 10px;
-    }
+  .btn-custom {
+    width: 100%;
+    padding: 10px;
+  }
 
-    h2, .card-title {
-        font-size: 1.2rem;
-    }
+  h2,
+  .card-title {
+    font-size: 1.2rem;
+  }
 }
 @media (max-width: 400px) {
-    .navbar-brand, .nav-link {
-        font-size: 1rem;
-    }
+  .navbar-brand,
+  .nav-link {
+    font-size: 1rem;
+  }
 
-    h2, .card-title {
-        font-size: 1.1rem;
-    }
+  h2,
+  .card-title {
+    font-size: 1.1rem;
+  }
 
-    .btn-custom {
-        padding: 8px;
-    }
+  .btn-custom {
+    padding: 8px;
+  }
 }

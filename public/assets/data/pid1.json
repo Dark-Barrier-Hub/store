@@ -2,8 +2,8 @@
   "title": "ImgForge",
   "description": "A simple and effective tool for converting and cropping images to different formats. (jpg, png, bmp, tga, for now)",
   "mainImage": "assets/images/products/pid1/main1.ico",
-  "download32": "",
-  "download64": "",
+  "download32": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/BatImgCnvt_32-bit.exe",
+  "download64": "https://github.com/Darkbarrier/store/releases/download/BatImgCnvt/BatImgCnvt_64-bit.exe",
   "slideshow": [
     "https://dark-barrier-hub.web.app/assets/images/products/pid1/sss1.png",
     "https://dark-barrier-hub.web.app/assets/images/products/pid1/sss2.png",

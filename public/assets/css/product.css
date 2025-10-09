@@ -60,7 +60,7 @@
     box-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
 }
 
-/* Carousel */
+/* Carousel Container */
 .carousel {
     border: 2px solid #9b59b6;
     border-radius: 16px;
@@ -68,22 +68,58 @@
     box-shadow: 0 0 15px rgba(186, 85, 211, 0.3);
     background: rgba(0, 0, 0, 0.3);
     padding: 8px;
+    max-height: 400px; /* Reduced to match image max-height */
+    position: relative;
 }
 
+.carousel-control-prev , .carousel-control-next {
+    width: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffd700;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Carousel Inner */
+.carousel-inner {
+    height: 350px; /* Slightly less than max-height to account for padding */
+    overflow: hidden;
+}
+
+/* Carousel Images */
 .carousel-item img {
-    max-height: 400px;
+    max-height: 350px; /* Consistent height for all images */
+    width: auto;
     object-fit: contain;
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+    display: block;
+    margin: 0 auto;
 }
 
-/* App Details (Metadata) */
+/* Ensure App Details Section Stays Visible */
+#app-container {
+    min-height: 100vh; /* Ensure container spans the viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
 #metadata-list {
+    margin-top: 30px; /* Increased spacing */
     background: rgba(54, 30, 70, 0.7);
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+    position: relative;
+    z-index: 1;
+    flex-grow: 0; /* Prevent it from stretching */
+}
+
+/* Footer Positioning */
+.footer {
+    margin-top: auto; /* Push footer to bottom */
 }
 
 .list-group-item {
