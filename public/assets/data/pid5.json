@@ -1,13 +1,13 @@
 {
-  "title": "SimpleEncryption_RSA.exe",
-  "description": "A simple and effective tool for generating RSA.",
-  "mainImage": "assets/images/products/pid4/main1.ico",
+  "title": "ImgForge",
+  "description": "A simple and effective tool for converting and cropping images to different formats. (jpg, jpeg, png, bmp, tga, webp, tif, tiff)",
+  "mainImage": "assets/images/products/pid5/main1.ico",
   "download32": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/SimpleEncryption_RSA.exe",
   "download64": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/SimpleEncryption_RSA.exe",
   "slideshow": [
-    "https://dark-barrier-hub.web.app/assets/images/products/pid4/sss1.png",
-    "https://dark-barrier-hub.web.app/assets/images/products/pid4/sss2.png",
-    "https://dark-barrier-hub.web.app/assets/images/products/pid4/sss3.png"
+    "https://dark-barrier-hub.web.app/assets/images/products/pid5/sss1.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid5/sss2.png",
+    "https://dark-barrier-hub.web.app/assets/images/products/pid5/sss3.png"
   ],
   "metadata": {
     "Version": "1.0.0",
