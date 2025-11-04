@@ -2,8 +2,8 @@
   "title": "ImgForge",
   "description": "A simple and effective tool for converting and cropping images to different formats. (jpg, jpeg, png, bmp, tga, webp, tif, tiff)",
   "mainImage": "assets/images/products/pid5/main1.ico",
-  "download32": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/SimpleEncryption_RSA.exe",
-  "download64": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/SimpleEncryption_RSA.exe",
+  "download32": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/ImgForge.exe",
+  "download64": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/ImgForge.exe",
   "slideshow": [
     "https://dark-barrier-hub.web.app/assets/images/products/pid5/sss1.png",
     "https://dark-barrier-hub.web.app/assets/images/products/pid5/sss2.png",

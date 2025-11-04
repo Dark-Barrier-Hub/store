@@ -1,6 +1,6 @@
 {
-  "title": "ImgForge.exe",
-  "description": "A simple and effective tool for converting and cropping images to different formats. (jpg, png, bmp, tga, for now)",
+  "title": "BatImgCnvt.exe",
+  "description": "A simple and effective tool for converting images to different formats. (jpg, png, bmp, tga, for now)",
   "mainImage": "assets/images/products/pid1/main1.ico",
   "download32": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/BatImgCnvt_32-bit.exe",
   "download64": "https://github.com/Dark-Barrier-Hub/store/releases/download/v1.0.0/BatImgCnvt_64-bit.exe",

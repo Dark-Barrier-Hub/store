@@ -22,5 +22,11 @@
     "link": "product.html?data=assets/data/pid4.json",
     "description": "A simple and effective tool for generating RSA keys.",
     "icon": "assets/images/products/pid4/main1.ico"
+  },
+  {
+    "name": "ImgForge",
+    "link": "product.html?data=assets/data/pid5.json",
+    "description": "A tool for converting images into various formats.",
+    "icon": "assets/images/products/pid5/main1.ico"
   }
 ]

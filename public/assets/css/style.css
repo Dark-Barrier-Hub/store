@@ -11,7 +11,7 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   font-family: "Poppins", serif;
-  background: url("../images/dbh_bg.jpg") no-repeat center center fixed;
+  background: url("../images/dbh_bg.webp") no-repeat center center fixed;
   background-color: var(--bg-dark);
   background-size: cover;
   color: var(--text-light);
