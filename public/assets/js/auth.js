@@ -1,8 +1,12 @@
 // Import Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getAnalytics } from 
-"https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
-import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+import {
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 
 // Load firebaseConfig from external JSON
 fetch('assets/js/API.json')
@@ -10,65 +14,43 @@ fetch('assets/js/API.json')
     .then(firebaseConfig => {
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-	const analytics = getAnalytics(app);
+        const analytics = getAnalytics(app);
         const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-        // Now you can safely use auth and other firebase features
+        const signInBtn = document.getElementById("google-signin-btn");
+        const statusMsg = document.getElementById("auth-status");
 
-        // --- Your existing code goes here ---
-
-        // Handle sending login link
-        document.getElementById("send-link").addEventListener("click", function (event) {
-            event.preventDefault();
-
-            const email = document.getElementById("user-email").value.trim();
-            if (!email) {
-                alert("Please enter your email.");
-                return;
-            }
-
-            const actionCodeSettings = {
-                url: window.location.href, // Redirects back to this page
-                handleCodeInApp: true,
-            };
-
-            sendSignInLinkToEmail(auth, email, actionCodeSettings)
-                .then(() => {
-                    alert("A login link has been sent to your email. Please check your inbox.");
-                    localStorage.setItem("emailForSignIn", email); // Store email temporarily
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
-        });
-
-        // Handle login if the user opens the link
-        if (isSignInWithEmailLink(auth, window.location.href)) {
-            let email = localStorage.getItem("emailForSignIn");
-            if (!email) {
-                email = prompt("Please enter your email to confirm sign-in:");
-            }
-
-            signInWithEmailLink(auth, email, window.location.href)
-                .then((result) => {
-                    localStorage.removeItem("emailForSignIn");
-                    alert("Login successful! Redirecting...");
-                    window.location.href = "profile.html"; // Redirect after login
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
-        }
-
-        // Check authentication state
+        // Check if user is already logged in — redirect to profile
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log("User is logged in:", user.uid);
-            } else {
-                console.log("No user logged in.");
+                localStorage.setItem("userUID", user.uid);
+                window.location.href = "profile.html";
             }
         });
 
+        // Google Sign-In via popup
+        signInBtn.addEventListener("click", () => {
+            signInBtn.disabled = true;
+            signInBtn.style.opacity = "0.7";
+            statusMsg.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:6px;"></i> Opening Google sign-in...';
+
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    localStorage.setItem("userUID", user.uid);
+                    statusMsg.innerHTML = '<i class="fa-solid fa-check" style="color: var(--teal-rune); margin-right:6px;"></i> Signed in! Redirecting...';
+                    window.location.href = "profile.html";
+                })
+                .catch((error) => {
+                    signInBtn.disabled = false;
+                    signInBtn.style.opacity = "1";
+                    const msg = error.code === "auth/popup-closed-by-user"
+                        ? "Sign-in cancelled. The gate awaits your return."
+                        : `Sign-in failed: ${error.message}`;
+                    statusMsg.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color: var(--crimson-bright); margin-right:6px;"></i> ${msg}`;
+                });
+        });
     })
     .catch(error => {
         console.error("Failed to load Firebase config:", error);

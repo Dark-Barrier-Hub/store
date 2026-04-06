@@ -4,10 +4,9 @@ import {
     getAuth,
     signOut,
     onAuthStateChanged,
-    sendSignInLinkToEmail,
-    isSignInWithEmailLink,
-    signInWithEmailLink,
-    verifyBeforeUpdateEmail
+    GoogleAuthProvider,
+    signInWithPopup,
+    updateProfile
 } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
 import {
@@ -22,224 +21,183 @@ fetch('assets/js/API.json')
     .then(firebaseConfig => {
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-	const analytics = getAnalytics(app);
+        const analytics = getAnalytics(app);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // DOM Elements
-        const avatarImg = document.getElementById("avatar");
-        const profileHeader = document.querySelector(".profile-container h1");
-        const loadingText = document.querySelector(".loading-text");
-        const profileContainer = document.querySelector(".profile-container");
-        const profileSetup = document.getElementById("profile-setup");
+        // ── DOM elements ──────────────────────────────────────────────
+        const loadingState   = document.getElementById("loading-state");
+        const mainProfile    = document.getElementById("main-profile");
+        const profileSetup   = document.getElementById("profile-setup");
+        const avatarImg      = document.getElementById("avatar");
+        const profileNameEl  = document.getElementById("profile-name-text");
+        const emailEl        = document.getElementById("email");
 
-        // Auth Listener
+        // ── Auth listener ─────────────────────────────────────────────
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                const userUID = user.uid;
-                localStorage.setItem("userUID", userUID);
-                fetchUserData(userUID);
+                localStorage.setItem("userUID", user.uid);
+                fetchUserData(user);
             } else {
-                alert("No user logged in! Redirecting to login page.");
-                logoutUser();
-                window.location.href = "index.html";
+                window.location.href = "logsign.html";
             }
         });
 
-        // Save this somewhere globally if needed
-        const actionCodeSettings = {
-            url: window.location.href,
-            handleCodeInApp: true
-        };
-
-        // Fetch User Data
-        async function fetchUserData(uid) {
-            const userRef = doc(db, "users", uid);
+        // ── Fetch Firestore profile ───────────────────────────────────
+        async function fetchUserData(user) {
+            const userRef  = doc(db, "users", user.uid);
             const userSnap = await getDoc(userRef);
 
             if (userSnap.exists()) {
-                const userData = userSnap.data();
-                displayUserData(userData);
+                displayUserData(userSnap.data(), user);
             } else {
-                askForUserDetails(uid);
+                // Pre-fill from Google account data
+                const googleName   = user.displayName || "";
+                const googleAvatar = user.photoURL    || "";
+                askForUserDetails(user.uid, googleName, googleAvatar);
             }
         }
 
-        window.addEventListener("DOMContentLoaded", async () => {
-            if (isSignInWithEmailLink(auth, window.location.href)) {
-                const email = window.localStorage.getItem("reauthEmail");
-                if (email) {
-                    try {
-                        await signInWithEmailLink(auth, email, window.location.href);
-                        window.localStorage.removeItem("reauthEmail");
-                        alert("Re-authentication successful! You can now retry updating your email.");
-                        logoutUser();
-                    } catch (error) {
-                        alert("Sign-in with email link failed: " + error.message);
-                    }
-                } else {
-                    alert("No stored email for re-authentication.");
-                }
+        // ── Display profile ───────────────────────────────────────────
+        function displayUserData(userData, user) {
+            loadingState.style.display = "none";
+            mainProfile.style.display  = "block";
+
+            profileNameEl.textContent = userData.name || user.displayName || "Commander";
+            emailEl.textContent       = user.email || "—";
+
+            const avatarSrc = userData.avatar_pic || user.photoURL || "";
+            if (avatarSrc) {
+                avatarImg.src             = avatarSrc;
+                avatarImg.style.display   = "block";
             }
-        });
 
-
-        // Display Profile Data
-        function displayUserData(userData) {
-            const user = auth.currentUser;
-            const email = user ? user.email : "Not Available";
-
-            loadingText.style.display = "none";
-            profileHeader.textContent = `Welcome, ${userData.name || "User"}!`;
-            document.getElementById("email").textContent = `Email: ${email}`;
-
-            avatarImg.src = userData.avatar_pic || "assets/images/default_avatar.png";
-            avatarImg.style.display = "block";
-
-            // Event Listeners
-            document.getElementById("logout").addEventListener("click", logoutUser);
-
-            // Change Name
+            // ── Settings: Change Name ──
             document.getElementById("changeNameBtn").addEventListener("click", async () => {
                 const newName = prompt("Enter new name:");
-                if (newName && newName.trim() !== "") {
-                    const uid = auth.currentUser.uid;
-                    const userRef = doc(db, "users", uid);
-                    await setDoc(userRef, { name: newName.trim() }, { merge: true });
-                    alert("Name updated successfully.");
-                    profileHeader.textContent = `Welcome, ${newName.trim()}!`;
-                }
+                if (!newName || !newName.trim()) return;
+                const userRef = doc(db, "users", user.uid);
+                await setDoc(userRef, { name: newName.trim() }, { merge: true });
+                profileNameEl.textContent = newName.trim();
+                alert("Name updated successfully.");
             });
 
-            // Change Image
+            // ── Settings: Change Image ──
             document.getElementById("changeImageBtn").addEventListener("click", () => {
-                const fileInput = document.createElement("input");
-                fileInput.type = "file";
-                fileInput.accept = "image/*";
+                const fileInput    = document.createElement("input");
+                fileInput.type     = "file";
+                fileInput.accept   = "image/*";
                 fileInput.onchange = async () => {
                     const file = fileInput.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = async () => {
-                            const avatar_pic = reader.result;
-                            const uid = auth.currentUser.uid;
-                            const userRef = doc(db, "users", uid);
-                            await setDoc(userRef, { avatar_pic }, { merge: true });
-                            alert("Image updated successfully.");
-                            avatarImg.src = avatar_pic;
-                        };
-                        reader.readAsDataURL(file);
-                    }
+                    if (!file) return;
+                    const reader   = new FileReader();
+                    reader.onload  = async () => {
+                        const avatar_pic = reader.result;
+                        const userRef    = doc(db, "users", user.uid);
+                        await setDoc(userRef, { avatar_pic }, { merge: true });
+                        avatarImg.src           = avatar_pic;
+                        avatarImg.style.display = "block";
+                        alert("Image updated successfully.");
+                    };
+                    reader.readAsDataURL(file);
                 };
                 fileInput.click();
             });
 
-            // Change Email
-            document.getElementById("changeEmailBtn").addEventListener("click", async () => {
-                const user = auth.currentUser;
-
-                if (!user || !user.email) {
-                    alert("No authenticated user or email.");
-                    return;
-                }
-
-                const newEmail = prompt("Enter your new email:");
-                if (!newEmail || newEmail.trim() === "") {
-                    alert("Please enter a valid email.");
-                    return;
-                }
-
-                try {
-                    await verifyBeforeUpdateEmail(user, newEmail.trim(), actionCodeSettings);
-                    alert(`A verification email has been sent to ${newEmail.trim()}. Please verify to update your email.`);
-                } catch (error) {
-                    if (error.code === "auth/requires-recent-login") {
-                        // Send a reauthentication email to their current email
-                        try {
-                            await sendSignInLinkToEmail(auth, user.email, actionCodeSettings);
-                            window.localStorage.setItem("reauthEmail", user.email);
-                            alert("To re-authenticate, check your email and click the link. Then return to this page.");
-                        } catch (linkError) {
-                            alert("Failed to send re-authentication link: " + linkError.message);
-                        }
-                    } else {
-                        alert("Failed to send verification email: " + error.message);
-                    }
-                }
+            // ── Settings: Change Email — not supported for Google accounts ──
+            document.getElementById("changeEmailBtn").addEventListener("click", () => {
+                alert("Your email is managed by Google. To change it, update your Google account directly at myaccount.google.com.");
             });
 
+            // ── Logout ──
+            document.getElementById("logout").addEventListener("click", logoutUser);
         }
 
-        // First Time Profile Setup
-        function askForUserDetails(uid) {
-            loadingText.style.display = "none";
-            profileContainer.style.display = "none";
-            profileSetup.style.display = "block";
+        // ── First-time setup ──────────────────────────────────────────
+        function askForUserDetails(uid, prefillName, prefillAvatar) {
+            loadingState.style.display  = "none";
+            mainProfile.style.display   = "none";
+            profileSetup.style.display  = "block";
 
-            const nameInput = document.getElementById("nameInput");
+            const nameInput   = document.getElementById("nameInput");
             const avatarInput = document.getElementById("avatarInput");
 
-            // Live Preview
+            // Pre-fill name from Google
+            if (prefillName) nameInput.value = prefillName;
+
+            // Show Google avatar as default preview if available
+            if (prefillAvatar) {
+                const preview     = document.createElement("img");
+                preview.src       = prefillAvatar;
+                preview.id        = "avatarPreview";
+                preview.style.cssText = "width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--border-mid);box-shadow:var(--glow-violet);";
+                document.getElementById("avatar-preview-wrap").appendChild(preview);
+            }
+
+            // Live preview on file change
             avatarInput.addEventListener("change", () => {
                 const file = avatarInput.files[0];
-                if (file) {
-                    const previewReader = new FileReader();
-                    previewReader.onload = () => {
-                        document.getElementById("avatarPreview")?.remove(); // Remove previous preview if any
-                        const preview = document.createElement("img");
-                        preview.src = previewReader.result;
-                        preview.style.width = "100px";
-                        preview.style.borderRadius = "50%";
-                        preview.style.marginTop = "10px";
-                        preview.id = "avatarPreview";
-                        avatarInput.parentNode.appendChild(preview);
-                    };
-                    previewReader.readAsDataURL(file);
-                }
+                if (!file) return;
+                const reader   = new FileReader();
+                reader.onload  = () => {
+                    const existing = document.getElementById("avatarPreview");
+                    if (existing) existing.remove();
+                    const preview     = document.createElement("img");
+                    preview.src       = reader.result;
+                    preview.id        = "avatarPreview";
+                    preview.style.cssText = "width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--border-mid);box-shadow:var(--glow-violet);";
+                    document.getElementById("avatar-preview-wrap").appendChild(preview);
+                };
+                reader.readAsDataURL(file);
             });
 
+            // Submit
             const form = document.getElementById("setup-form");
             form.addEventListener("submit", async (e) => {
                 e.preventDefault();
 
                 const name = nameInput.value.trim();
-                const file = avatarInput.files[0];
-
-                if (!name || !file) {
-                    alert("Please fill in all fields.");
+                if (!name) {
+                    alert("Please enter your name.");
                     return;
                 }
 
-                const reader = new FileReader();
-                reader.onload = async () => {
-                    const avatar_pic = reader.result;
-                    await saveUserData(uid, { name, avatar_pic });
+                const file = avatarInput.files[0];
 
-                    profileSetup.style.display = "none";
-                    profileContainer.style.display = "block";
-                };
-                reader.readAsDataURL(file);
+                if (file) {
+                    // User uploaded a custom image
+                    const reader  = new FileReader();
+                    reader.onload = async () => {
+                        await saveUserData(uid, { name, avatar_pic: reader.result });
+                    };
+                    reader.readAsDataURL(file);
+                } else if (prefillAvatar) {
+                    // Use Google profile picture URL directly
+                    await saveUserData(uid, { name, avatar_pic: prefillAvatar });
+                } else {
+                    await saveUserData(uid, { name, avatar_pic: "" });
+                }
             });
         }
 
-        // Save Data to Firestore
+        // ── Save to Firestore ─────────────────────────────────────────
         async function saveUserData(uid, userData) {
             try {
                 const userRef = doc(db, "users", uid);
                 await setDoc(userRef, userData);
-                alert("Profile saved successfully!");
-                displayUserData(userData);
+                alert("Profile saved! Welcome to the Hub.");
+                // Reload page to show main profile
+                window.location.reload();
             } catch (error) {
                 alert("Error saving profile: " + error.message);
             }
         }
 
-        // Logout
+        // ── Logout ────────────────────────────────────────────────────
         function logoutUser() {
             signOut(auth)
                 .then(() => {
                     localStorage.removeItem("userUID");
-                    localStorage.removeItem("userLoggedIn");
                     window.location.href = "index.html";
                 })
                 .catch((error) => {
