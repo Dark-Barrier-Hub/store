@@ -1,33 +1,135 @@
+/* ============================================================
+   LOGSIGN PAGE STYLES
+   ============================================================ */
+
 #main {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 140px); /* Adjust to ensure it doesn't overlap with navbar/footer */
+  min-height: calc(100vh - 72px - 56px);
+  padding: 2rem 1rem;
 }
 
-.card {
-  background: rgba(255, 254, 254, 0);
-  color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(48, 48, 48, 0.2);
-  width: 350px;
-  padding: 20px;
+.auth-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(19,16,42,0.98) 0%, rgba(13,11,26,0.99) 100%);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem 2.25rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+  animation: fadeIn 0.6s ease both;
+  text-align: center;
 }
 
-.hidden {
-  display: none;
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), var(--violet-bright), transparent);
+  opacity: 0.7;
 }
 
-.card {
-  padding: 20px;
-  width: 350px;
+.auth-card-corner {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
 }
 
-.form-control {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  color: white;
+.auth-card-corner--tl {
+  top: 12px; left: 12px;
+  border-top: 2px solid rgba(255,215,0,0.35);
+  border-left: 2px solid rgba(255,215,0,0.35);
 }
-.form-control::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+
+.auth-card-corner--br {
+  bottom: 12px; right: 12px;
+  border-bottom: 2px solid rgba(255,215,0,0.35);
+  border-right: 2px solid rgba(255,215,0,0.35);
+}
+
+.auth-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(75,0,130,0.6), rgba(111,66,193,0.4));
+  border: 2px solid var(--border-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: var(--glow-violet);
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+
+.auth-rune {
+  font-family: var(--font-rune);
+  color: var(--teal-rune);
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-shadow: var(--glow-rune);
+  animation: runeGlow 3s infinite;
+  margin-bottom: 0.6rem;
+}
+
+.auth-title {
+  font-family: var(--font-title);
+  color: var(--gold) !important;
+  text-shadow: var(--glow-gold);
+  font-size: 1.6rem !important;
+  margin-bottom: 0.6rem;
+}
+
+.auth-desc {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+}
+
+.auth-field {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 0.85rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold-dim) !important;
+  background: linear-gradient(135deg, rgba(111,66,193,0.5), rgba(75,0,130,0.7)) !important;
+  color: var(--gold-pale) !important;
+  border-radius: var(--radius-sm) !important;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  margin-top: 0.25rem;
+}
+
+.auth-btn:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim)) !important;
+  color: var(--bg-void) !important;
+  border-color: var(--gold) !important;
+  box-shadow: var(--glow-gold) !important;
+  transform: translateY(-1px);
+}
+
+.auth-note {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  line-height: 1.6;
 }

@@ -1,41 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Basic Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="title">Product - Dark Barrier Hub</title>
-  <meta name="description" content="Explore and download tools and applications from Dark Barrier Hub. View product details, screenshots, and metadata.">
+  <title id="title">Artifact — Dark Barrier Hub</title>
+  <meta name="description" content="Explore and download tools and applications from Dark Barrier Hub.">
   <meta name="keywords" content="Dark Barrier Hub, product page, app tools, software download, 32-bit, 64-bit, tech hub">
   <meta name="author" content="Dark Barrier Hub">
-
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://dark-barrier-hub.web.app/product.html" />
-
-  <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Dark Barrier Hub - App Details" />
-  <meta property="og:description" content="Check out this featured tool or software from Dark Barrier Hub with screenshots and system info." />
+  <meta property="og:description" content="Check out this featured tool or software from Dark Barrier Hub." />
   <meta property="og:image" content="https://dark-barrier-hub.web.app/assets/images/dbh_icon.png" />
   <meta property="og:url" content="https://dark-barrier-hub.web.app/product.html" />
   <meta property="og:type" content="website" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Featured App - Dark Barrier Hub" />
-  <meta name="twitter:description" content="Discover featured software tools. Download for 32-bit and 64-bit systems with full detail and slideshow." />
   <meta name="twitter:image" content="https://dark-barrier-hub.web.app/assets/images/dbh_icon.png" />
-
-  <!-- Favicon (dynamic) -->
   <link rel="shortcut icon" href="assets/images/dbh_icon.png" type="image/x-icon" id="icons" />
-
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/product.css" />
 </head>
-
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark">
@@ -52,109 +37,167 @@
           <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="logsign.html" title="Login/Signup"><i
-                class="fa-solid fa-user-plus"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="logsign.html" title="Login/Signup"><i class="fa-solid fa-user-plus"></i></a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container mt-4" id="app-container">
-    <div class="row">
-      <div class="col-md-6">
-        <img id="main-image" src="" alt="App Image" class="img-fluid rounded shadow" />
+
+  <!-- Breadcrumb -->
+  <div class="product-breadcrumb">
+    <a href="index.html"><i class="fa-solid fa-house"></i></a>
+    <span class="sep">›</span>
+    <a href="tools.html">Arsenal</a>
+    <span class="sep">›</span>
+    <span id="breadcrumb-name">Artifact</span>
+  </div>
+
+  <div class="container mt-3 mb-5" id="app-container">
+    <!-- Hero Row -->
+    <div class="product-hero">
+      <div class="product-img-wrap">
+        <img id="main-image" src="" alt="App Image" />
+        <div class="product-img-bg"></div>
       </div>
-      <div class="col-md-6 text-center">
-        <h2 id="app-title"></h2>
+
+      <div class="product-info">
+        <div class="product-tag">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Forged Artifact
+        </div>
+        <h1 id="app-title"></h1>
         <p id="app-description"></p>
-        <div class="d-grid gap-2 col-8 mx-auto">
-          <a id="download-32" class="btn btn-primary" target="_blank">Download 32-bit</a>
-          <a id="download-64" class="btn btn-success" target="_blank">Download 64-bit</a>
+
+        <div class="download-group">
+          <a id="download-32" class="dl-btn dl-btn--32" target="_blank">
+            <i class="fa-solid fa-download"></i>
+            <div>
+              <span class="dl-label">Download</span>
+              <span class="dl-sub">32-bit Edition</span>
+            </div>
+          </a>
+          <a id="download-64" class="dl-btn dl-btn--64" target="_blank">
+            <i class="fa-solid fa-download"></i>
+            <div>
+              <span class="dl-label">Download</span>
+              <span class="dl-sub">64-bit Edition</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
 
-    <hr class="my-4" />
+    <!-- Divider -->
+    <div class="product-divider">
+      <div class="product-divider-line"></div>
+      <span><i class="fa-solid fa-eye"></i> Visions of the Artifact</span>
+      <div class="product-divider-line"></div>
+    </div>
 
-    <div class="row mt-4">
-      <div class="col-12">
-        <h4>Slideshow</h4>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner" id="carousel-inner"></div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-          </button>
-        </div>
+    <!-- Carousel -->
+    <div class="product-carousel-wrap">
+      <div id="carouselProduct" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="carousel-inner"></div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
       </div>
     </div>
 
-    <div class="row mt-5">
-      <div class="col-12">
-        <h4>App Details</h4>
-        <ul class="list-group" id="metadata-list"></ul>
-      </div>
+    <!-- Divider -->
+    <div class="product-divider" style="margin-top: 3rem;">
+      <div class="product-divider-line"></div>
+      <span><i class="fa-solid fa-scroll"></i> Artifact Lore</span>
+      <div class="product-divider-line"></div>
     </div>
+
+    <!-- Metadata -->
+    <div class="product-meta-grid" id="metadata-list"></div>
   </div>
 
   <footer class="footer text-center p-3 mt-4">
-    &copy; 2025 Dark Barrier Hub. All rights reserved.
+    &copy; 2026 Dark Barrier Hub. All rights reserved.
   </footer>
 
   <script>
     function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
+      return new URLSearchParams(window.location.search).get(param);
     }
 
     async function loadAppData() {
-    const file = getQueryParam('data');
-    if (!file) return;
+      const file = getQueryParam('data');
+      if (!file) return;
 
-    try {
+      try {
         const res = await fetch(file);
         const data = await res.json();
 
-        // Main content
         document.getElementById('icons').href = data.mainImage;
-        document.getElementById('title').textContent = data.title;
+        document.getElementById('title').textContent = data.title + ' — Dark Barrier Hub';
+        document.getElementById('breadcrumb-name').textContent = data.title;
+
         document.getElementById('main-image').src = data.mainImage;
         document.getElementById('app-title').textContent = data.title;
         document.getElementById('app-description').textContent = data.description;
         document.getElementById('download-32').href = data.download32;
         document.getElementById('download-64').href = data.download64;
 
-        // Slideshow
+        // Carousel
         const carousel = document.getElementById('carousel-inner');
-        carousel.innerHTML = ''; // Clear previous content
+        carousel.innerHTML = '';
         data.slideshow.forEach((img, index) => {
-            const div = document.createElement('div');
-            div.className = `carousel-item ${index === 0 ? 'active' : ''}`;
-            div.innerHTML = `<img src="${img}" class="d-block mx-auto w-100" style="max-height: 350px; object-fit: contain;" alt="Slide ${index + 1}">`;
-            carousel.appendChild(div);
+          const div = document.createElement('div');
+          div.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+          div.innerHTML = `<div class="carousel-item-inner"><img src="${img}" alt="Screenshot ${index + 1}"></div>`;
+          carousel.appendChild(div);
         });
 
-        // Metadata
+        // Metadata grid
         const metaList = document.getElementById('metadata-list');
-        metaList.innerHTML = ''; // Clear previous content
+        metaList.innerHTML = '';
         Object.entries(data.metadata).forEach(([key, value]) => {
-            const li = document.createElement('li');
-            li.className = 'list-group-item d-flex justify-content-between align-items-center';
-            li.innerHTML = `<strong>${key}:</strong> <span>${value}</span>`;
-            metaList.appendChild(li);
+          const cell = document.createElement('div');
+          cell.className = 'meta-cell';
+          const icon = getMetaIcon(key);
+          cell.innerHTML = `
+            <div class="meta-key"><i class="${icon}"></i> ${key}</div>
+            <div class="meta-val">${value}</div>
+          `;
+          metaList.appendChild(cell);
         });
-    } catch (err) {
-        console.error('Failed to load JSON data:', err);
-    }
-}
 
-window.onload = loadAppData;
+        // Animate in
+        document.querySelector('.product-hero').style.animation = 'fadeIn 0.6s ease both';
+      } catch (err) {
+        console.error('Failed to load JSON data:', err);
+        document.getElementById('app-container').innerHTML = `
+          <div style="text-align:center; padding: 4rem 2rem;">
+            <p style="font-family: var(--font-body); font-style:italic; color:var(--crimson-bright);">
+              This artifact could not be retrieved from the vault.
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    function getMetaIcon(key) {
+      const map = {
+        'Version': 'fa-solid fa-code-branch',
+        'Platform': 'fa-solid fa-desktop',
+        'Release Date': 'fa-solid fa-calendar',
+        'Size': 'fa-solid fa-weight-hanging',
+        'Category': 'fa-solid fa-tag',
+        'License': 'fa-solid fa-scroll',
+        'Developer': 'fa-solid fa-user-shield',
+      };
+      return map[key] || 'fa-solid fa-circle-dot';
+    }
+
+    window.onload = loadAppData;
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

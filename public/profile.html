@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Basic Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile - Dark Barrier Hub</title>
-    <meta name="description" content="Manage your Dark Barrier Hub account. View and edit your profile, update your avatar and email, and personalize your experience.">
-    <meta name="keywords" content="Dark Barrier Hub, user profile, account settings, profile update, avatar change, email change, secure login">
+    <title>Commander Profile — Dark Barrier Hub</title>
+    <meta name="description" content="Manage your Dark Barrier Hub account. View and edit your profile, update your avatar and email.">
+    <meta name="keywords" content="Dark Barrier Hub, user profile, account settings">
     <meta name="author" content="Dark Barrier Hub">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Your Profile - Dark Barrier Hub" />
-    <meta property="og:description" content="Welcome to your Dark Barrier Hub profile page. Update your name, picture, or email and personalize your dashboard." />
+    <meta property="og:title" content="Commander Profile — Dark Barrier Hub" />
     <meta property="og:image" content="https://dark-barrier-hub.web.app/assets/images/dbh_icon.png" />
     <meta property="og:url" content="https://dark-barrier-hub.web.app/profile.html" />
     <meta property="og:type" content="profile" />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dark Barrier Hub - Your Profile" />
-    <meta name="twitter:description" content="Update your Dark Barrier Hub account details. Secure, fast, and easy customization." />
     <meta name="twitter:image" content="https://dark-barrier-hub.web.app/assets/images/dbh_icon.png" />
-
-    <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/dbh_icon.png" type="image/x-icon" />
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -41,7 +29,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html" title="Home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="tools.html">Tools</a></li>
                     <li class="nav-item"><a class="nav-link" href="games.html">Games</a></li>
                     <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
@@ -53,43 +41,81 @@
     </nav>
 
     <!-- Profile Section -->
-    <div class="profile-container">
-        <div class="dropdown text-end" style="position: absolute; top: 20px; right: 20px;">
-            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#" id="changeNameBtn">Change Name</a></li>
-                <li><a class="dropdown-item" href="#" id="changeImageBtn">Change Image</a></li>
-                <li><a href="#" class="dropdown-item" id="changeEmailBtn">Change Email</a></li>
-            </ul>
+    <div class="profile-page-wrap">
+
+      <!-- Loading State -->
+      <div class="profile-container" id="loading-state">
+        <div class="loading-pulse">
+          <div class="loading-ring"></div>
+          <span>Consulting the Archives...</span>
         </div>
-        
-        <h1>Profile</h1>
-        <h1 class="loading-text" style="display: none;">Loading...</h1>
-        <p id="email">Loading email...</p>
-        <img id="avatar" class="profile-avatar" src="" alt="Profile Picture">
-        <br>
-        <button id="logout" class="logout-btn">Logout</button>
+      </div>
+
+      <!-- Main Profile -->
+      <div class="profile-container" id="main-profile" style="display: none;">
+        <!-- Settings Dropdown -->
+        <div class="profile-settings-btn">
+          <div class="dropdown">
+            <button class="btn-settings dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-gear"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+              <li><a class="dropdown-item" href="#" id="changeNameBtn"><i class="fa-solid fa-pen" style="width:14px; margin-right:8px; opacity:0.6;"></i>Change Name</a></li>
+              <li><a class="dropdown-item" href="#" id="changeImageBtn"><i class="fa-solid fa-image" style="width:14px; margin-right:8px; opacity:0.6;"></i>Change Image</a></li>
+              <li><a class="dropdown-item" href="#" id="changeEmailBtn"><i class="fa-solid fa-envelope" style="width:14px; margin-right:8px; opacity:0.6;"></i>Change Email</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="profile-rune">⚔ Commander's Sanctum ⚔</div>
+
+        <div class="profile-avatar-wrap">
+          <img id="avatar" src="" alt="Profile Picture" style="display:none;" />
+          <div class="profile-avatar-ring"></div>
+        </div>
+
+        <h1 class="profile-name" id="profile-name-text">Commander</h1>
+        <p class="profile-email" id="email">—</p>
+
+        <div class="profile-divider">
+          <div></div><span>✦</span><div></div>
+        </div>
+
+        <button id="logout" class="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i> Depart the Realm
+        </button>
+      </div>
+
+      <!-- First-time setup -->
+      <div class="profile-container" id="profile-setup" style="display: none;">
+        <div class="profile-rune">⚔ First Oath ⚔</div>
+        <h1 class="profile-title">Forge Your Identity</h1>
+        <p class="profile-setup-desc">Before entering the realm, a name and visage are required.</p>
+
+        <div class="setup-field">
+          <label class="form-label" for="nameInput"><i class="fa-solid fa-pen" style="opacity:0.6; margin-right:5px;"></i>Your Name</label>
+          <input type="text" class="form-control" id="nameInput" placeholder="What shall we call you?" required>
+        </div>
+
+        <div class="setup-field">
+          <label class="form-label" for="avatarInput"><i class="fa-solid fa-image" style="opacity:0.6; margin-right:5px;"></i>Profile Image</label>
+          <input type="file" class="form-control" id="avatarInput" accept="image/*" required>
+        </div>
+
+        <div id="avatar-preview-wrap"></div>
+
+        <button type="button" onclick="document.getElementById('setup-form').dispatchEvent(new Event('submit'))" class="logout-btn" style="margin-top: 1.25rem;">
+          <i class="fa-solid fa-shield-halved"></i> Swear the Oath
+        </button>
+        <form id="setup-form" style="display:none;"></form>
+      </div>
+
     </div>
 
-    <!-- Profile Setup Form (Hidden by Default) -->
-    <div class="profile-container" id="profile-setup" style="display: none;">
-        <h1>Set Up Your Profile</h1>
-        <form id="setup-form">
-            <div class="mb-3">
-                <label for="nameInput" class="form-label">Your Name</label>
-                <input type="text" class="form-control" id="nameInput" required>
-            </div>
-            <div class="mb-3">
-                <label for="avatarInput" class="form-label">Upload Profile Picture</label>
-                <input type="file" class="form-control" id="avatarInput" accept="image/*" required>
-            </div>
-            <button type="submit" class="logout-btn">Save Profile</button>
-        </form>
-    </div>
-    
     <footer class="footer text-center p-3 mt-4">
-        &copy; 2025 Dark Barrier Hub. All rights reserved.
+        &copy; 2026 Dark Barrier Hub. All rights reserved.
     </footer>
+
     <script type="module" src="assets/js/profile.js"></script>
     <script type="module" src="assets/js/login_logout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

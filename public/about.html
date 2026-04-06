@@ -1,34 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Dark Barrier Hub</title>
+    <title>The Legend — Dark Barrier Hub</title>
     <meta name="description" content="Learn about the creator and the vision behind Dark Barrier Hub – a space for tools, games, and unique content driven by creativity and technology.">
     <meta name="keywords" content="About Dark Barrier Hub, software developer, indie developer, tool maker, game developer, content creator, digital products">
     <meta name="author" content="Dark Barrier">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="About Us - Dark Barrier Hub">
-    <meta property="og:description" content="Discover the story and vision behind Dark Barrier Hub – where powerful tools, immersive games, and creative content come together.">
+    <meta property="og:title" content="The Legend — Dark Barrier Hub">
+    <meta property="og:description" content="Discover the story and vision behind Dark Barrier Hub.">
     <meta property="og:image" content="https://dark-barrier-hub.web.app/assets/images/dbh_icon.png">
     <meta property="og:url" content="https://dark-barrier-hub.web.app/about.html">
     <meta property="og:type" content="website">
-
-    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Dark Barrier Hub">
-    <meta name="twitter:description" content="A platform created by a passionate developer to share tools, games, and inspiring content.">
     <meta name="twitter:image" content="https://dark-barrier-hub.web.app/assets/images/dbh_icon.png">
-
-    <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/dbh_icon.png" type="image/x-icon">
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+      .about-hero {
+        padding: 4rem 1rem 2.5rem;
+        text-align: center;
+      }
+
+      .about-card {
+        max-width: 720px;
+        margin: 0 auto 4rem;
+        background: linear-gradient(145deg, rgba(19,16,42,0.97) 0%, rgba(13,11,26,0.99) 100%);
+        border: 1px solid var(--border-dim);
+        border-radius: var(--radius-lg);
+        padding: 3rem 2.5rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-deep);
+        animation: fadeIn 0.6s ease both;
+      }
+
+      .about-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--gold-dim), var(--violet-bright), transparent);
+        opacity: 0.7;
+      }
+
+      /* Corner ornaments */
+      .about-card .corner-tl,
+      .about-card .corner-br {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        pointer-events: none;
+      }
+
+      .about-card .corner-tl {
+        top: 12px; left: 12px;
+        border-top: 2px solid rgba(255,215,0,0.4);
+        border-left: 2px solid rgba(255,215,0,0.4);
+      }
+
+      .about-card .corner-br {
+        bottom: 12px; right: 12px;
+        border-bottom: 2px solid rgba(255,215,0,0.4);
+        border-right: 2px solid rgba(255,215,0,0.4);
+      }
+
+      .about-icon {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(75,0,130,0.6), rgba(111,66,193,0.4));
+        border: 2px solid var(--border-mid);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.75rem;
+        box-shadow: var(--glow-violet);
+        font-size: 2rem;
+        color: var(--gold);
+      }
+
+      .about-name {
+        font-family: var(--font-title);
+        color: var(--gold);
+        text-shadow: var(--glow-gold);
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 0.25rem;
+      }
+
+      .about-role {
+        font-family: var(--font-rune);
+        color: var(--teal-rune);
+        font-size: 0.75rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        text-align: center;
+        text-shadow: var(--glow-rune);
+        animation: runeGlow 3s infinite;
+        margin-bottom: 2rem;
+      }
+
+      .about-divider {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.75rem 0;
+        color: var(--gold-dim);
+        opacity: 0.4;
+      }
+
+      .about-divider::before,
+      .about-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+      }
+
+      .about-divider::before { background: linear-gradient(to right, transparent, var(--gold-dim)); }
+      .about-divider::after  { background: linear-gradient(to left,  transparent, var(--gold-dim)); }
+
+      .about-divider span { font-size: 0.9rem; }
+
+      .about-paragraph {
+        font-family: var(--font-body);
+        font-size: 1.05rem;
+        color: var(--text-secondary);
+        line-height: 1.85;
+        margin-bottom: 1.25rem;
+      }
+
+      .about-paragraph strong {
+        color: var(--gold);
+        font-style: normal;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.75rem;
+      }
+
+      .skill-tag {
+        font-family: var(--font-heading);
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.28rem 0.75rem;
+        border: 1px solid var(--border-mid);
+        color: var(--text-secondary);
+        border-radius: 3px;
+        transition: all 0.25s ease;
+      }
+
+      .skill-tag:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        box-shadow: var(--glow-gold);
+        background: rgba(255,215,0,0.05);
+      }
+
+      .founded-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-heading);
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--teal-rune);
+        border: 1px solid rgba(0,200,160,0.3);
+        padding: 0.35rem 0.9rem;
+        border-radius: 3px;
+        margin-top: 1.5rem;
+      }
+    </style>
 </head>
 
 <body>
@@ -51,18 +200,64 @@
         </div>
     </nav>
 
-    <div class="container my-5">
-        <h2 class="text-center mb-4">About Us</h2>
-        <div class="card p-2 shadow-lg" style="font-size: x-large;">
-            <p>Hello everyone, I’m <strong>Dark Barrier</strong>.</p>
-            <p>I established <strong>Dark Barrier Hub</strong> in 2023 with the goal of building a creative space that brings together powerful tools, exciting games, and thoughtful content.</p>
-            <p>I’m an avid <strong>software developer</strong> and <strong>writer</strong> who enjoys crafting experiences that are both technically sound and creatively rich. Whether it’s building digital utilities, creating immersive games, or writing unique stories, this hub reflects my passion and vision.</p>
-            <p>Thank you for being a part of this journey!</p>
+    <div class="about-hero">
+      <div style="font-family: var(--font-rune); color: var(--teal-rune); font-size: 0.8rem; letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 0.75rem; text-shadow: var(--glow-rune); animation: runeGlow 3s infinite;">Chronicle</div>
+      <h1 style="font-family: var(--font-title); color: var(--gold); text-shadow: var(--glow-gold); font-size: clamp(1.8rem, 5vw, 3rem);">The Legend</h1>
+      <p style="font-family: var(--font-body); font-style: italic; color: var(--text-secondary); margin-top: 0.75rem; font-size: 1rem;">Every great hub has an origin story.</p>
+    </div>
+
+    <div class="container">
+      <div class="about-card">
+        <div class="corner-tl"></div>
+        <div class="corner-br"></div>
+
+        <div class="about-icon">
+          <i class="fa-solid fa-shield-halved"></i>
         </div>
+
+        <h2 class="about-name">Dark Barrier</h2>
+        <div class="about-role">⚔ Architect of the Hub ⚔</div>
+
+        <p class="about-paragraph">
+          Greetings, traveller. I am <strong>Dark Barrier</strong> — a software developer and writer who walks the line between technical precision and creative expression.
+        </p>
+
+        <div class="about-divider"><span>✦</span></div>
+
+        <p class="about-paragraph">
+          In <strong>2023</strong>, I forged <strong>Dark Barrier Hub</strong> with a singular vision: to build a creative realm that unites powerful tools, immersive games, and thoughtful written works under one banner.
+        </p>
+
+        <p class="about-paragraph">
+          Whether crafting digital utilities that solve real problems, building games that transport you to other worlds, or writing stories that linger long after the last page — this hub is a reflection of my passion, skill, and dedication to the craft.
+        </p>
+
+        <div class="about-divider"><span>✦</span></div>
+
+        <p class="about-paragraph" style="color: var(--gold-dim); font-style: italic; text-align: center;">
+          "Thank you for being part of this journey. The quest has only just begun."
+        </p>
+
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="fa-solid fa-code" style="font-size:0.7rem; margin-right:4px;"></i> Software Dev</span>
+          <span class="skill-tag"><i class="fa-solid fa-feather" style="font-size:0.7rem; margin-right:4px;"></i> Writer</span>
+          <span class="skill-tag"><i class="fa-solid fa-dice-d20" style="font-size:0.7rem; margin-right:4px;"></i> Game Design</span>
+          <span class="skill-tag"><i class="fa-solid fa-wand-magic-sparkles" style="font-size:0.7rem; margin-right:4px;"></i> Tool Maker</span>
+          <span class="skill-tag"><i class="fa-brands fa-python" style="font-size:0.7rem; margin-right:4px;"></i> Python</span>
+          <span class="skill-tag"><i class="fa-brands fa-js" style="font-size:0.7rem; margin-right:4px;"></i> JavaScript</span>
+        </div>
+
+        <div class="text-center">
+          <span class="founded-badge">
+            <i class="fa-solid fa-tower-broadcast"></i>
+            Established 2023 · Still Standing
+          </span>
+        </div>
+      </div>
     </div>
 
     <footer class="footer text-center p-3 mt-4">
-        &copy; 2025 Dark Barrier Hub. All rights reserved.
+        &copy; 2026 Dark Barrier Hub. All rights reserved.
     </footer>
 
     <script type="module" src="assets/js/login_logout.js"></script>

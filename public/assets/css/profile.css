@@ -1,56 +1,222 @@
+/* ============================================================
+   PROFILE PAGE STYLES
+   ============================================================ */
 
-/* Profile Section */
+.profile-page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem 5rem;
+  min-height: calc(100vh - 72px - 56px);
+}
+
 .profile-container {
-    position: relative;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #222;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    color: white;
-}
-.profile-container h1 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-.profile-container p {
-    font-size: 1.1rem;
-    color: #bbb;
-}
-.profile-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 15px auto;
-    border: 3px solid rgb(255, 255, 255);
-    display: none;
-}
-.logout-btn {
-    background: cyan;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-.logout-btn:hover {
-    background: white;
-    color: black;
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(145deg, rgba(19,16,42,0.98), rgba(13,11,26,0.99));
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem 2rem;
+  box-shadow: var(--shadow-deep);
+  text-align: center;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease both;
 }
 
-/* Loading Animation */
-.loading-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    animation: blink 1.5s infinite;
+.profile-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), var(--violet-bright), transparent);
+  opacity: 0.7;
 }
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+
+/* Settings button */
+.profile-settings-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.btn-settings {
+  background: rgba(28, 23, 64, 0.8) !important;
+  border: 1px solid var(--border-dim) !important;
+  color: var(--text-muted) !important;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.85rem;
+  transition: all 0.25s ease !important;
+}
+
+.btn-settings:hover {
+  border-color: var(--border-mid) !important;
+  color: var(--gold) !important;
+  background: rgba(111,66,193,0.2) !important;
+}
+
+/* Rune label */
+.profile-rune {
+  font-family: var(--font-rune);
+  color: var(--teal-rune);
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-shadow: var(--glow-rune);
+  animation: runeGlow 3s infinite;
+  margin-bottom: 1.5rem;
+}
+
+/* Avatar */
+.profile-avatar-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 1.25rem;
+}
+
+.profile-avatar-wrap img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-mid);
+  box-shadow: var(--glow-violet);
+  position: relative;
+  z-index: 1;
+}
+
+.profile-avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,215,0,0.2);
+  animation: pulseGold 3s infinite;
+}
+
+/* Name & Email */
+.profile-name {
+  font-family: var(--font-title) !important;
+  color: var(--gold) !important;
+  text-shadow: var(--glow-gold);
+  font-size: 1.5rem !important;
+  margin-bottom: 0.35rem;
+}
+
+.profile-email {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 0;
+}
+
+/* Divider */
+.profile-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  color: var(--gold-dim);
+  opacity: 0.4;
+}
+
+.profile-divider div {
+  flex: 1;
+  height: 1px;
+  background: var(--gold-dim);
+}
+
+/* Logout / CTA Buttons */
+.logout-btn {
+  font-family: var(--font-heading) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  padding: 0.75rem 2rem !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border-mid) !important;
+  background: linear-gradient(135deg, rgba(139,26,26,0.4), rgba(139,26,26,0.6)) !important;
+  color: #ffaaaa !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #8b1a1a) !important;
+  border-color: #c0392b !important;
+  color: white !important;
+  box-shadow: var(--glow-ember) !important;
+}
+
+/* Loading animation */
+.loading-pulse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3rem 0;
+}
+
+.loading-ring {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--border-dim);
+  border-top-color: var(--gold);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-pulse span {
+  font-family: var(--font-rune);
+  color: var(--teal-rune);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: runeGlow 2s infinite;
+}
+
+/* Setup form */
+.profile-title {
+  font-family: var(--font-title) !important;
+  color: var(--gold) !important;
+  text-shadow: var(--glow-gold);
+  font-size: 1.5rem !important;
+  margin-bottom: 0.5rem;
+}
+
+.profile-setup-desc {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 1.75rem;
+}
+
+.setup-field {
+  margin-bottom: 1.1rem;
+  text-align: left;
+}
+
+#avatar-preview-wrap {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+#avatarPreview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-mid);
+  box-shadow: var(--glow-violet);
 }
